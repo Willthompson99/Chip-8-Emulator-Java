@@ -12,7 +12,7 @@ public class Main {
         frame.setLocationRelativeTo(null);
 
         Chip8 chip8 = new Chip8();
-        Display display = new Display(chip8.getDisplay());  // Ensure getDisplay() method is correctly implemented in Chip8
+        Display display = new Display(chip8.getDisplay());
         frame.add(display);
 
         Keyboard keyboard = new Keyboard(chip8);
@@ -32,17 +32,17 @@ public class Main {
 
             while (true) {
                 long now = System.nanoTime();
-                if (now - lastCycleTime >= 1000000000 / 500) {  // Emulate at approximately 500 Hz
+                if (now - lastCycleTime >= 1000000000 / 500) {
                     chip8.emulateCycle();
                     display.refresh();
                     lastCycleTime = now;
 
-                    if (System.currentTimeMillis() - lastTimerUpdate >= 1000 / 60) {  // Update timers at approximately 60 Hz
+                    if (System.currentTimeMillis() - lastTimerUpdate >= 1000 / 60) {
                         chip8.updateTimers();
                         lastTimerUpdate = System.currentTimeMillis();
                     }
                 }
-                Thread.sleep(2);  // Slight delay to help with CPU utilization
+                Thread.sleep(2);
             }
         } catch (IOException e) {
             System.err.println("Failed to load CHIP-8 program: " + e.getMessage());

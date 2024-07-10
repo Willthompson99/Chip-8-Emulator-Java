@@ -18,6 +18,7 @@ public class Chip8 {
     private int[] stack = new int[16];
     private int sp = 0;
     private Random random = new Random();
+    private Sound sound = new Sound();
 
     public void setKey(int key, boolean state) {
         if (key >= 0 && key < keys.length) {
@@ -289,6 +290,11 @@ public class Chip8 {
         }
         if (soundTimer > 0) {
             soundTimer--;
+            if (soundTimer == 0) {
+                sound.play();
+            } else {
+                sound.stop();
+            }
         }
     }
 }
