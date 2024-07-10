@@ -19,6 +19,19 @@ public class Chip8 {
     private int sp = 0;
     private Random random = new Random();
 
+    public void setKey(int key, boolean state) {
+        if (key >= 0 && key < keys.length) {
+            keys[key] = state;
+        }
+    }
+
+    public boolean getKeyState(int key) {
+        if (key >= 0 && key < keys.length) {
+            return keys[key];
+        }
+        return false;
+    }
+
     public Chip8() {
         initialize();
     }
